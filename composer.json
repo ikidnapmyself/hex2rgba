@@ -15,5 +15,8 @@
         "psr-4": {
             "hex2rgba\\": "src/hex2rgba/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5"
     }
 }
