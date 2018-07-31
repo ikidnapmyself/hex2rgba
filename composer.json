@@ -1,0 +1,19 @@
+{
+    "name": "frnxstd/hex2rgba",
+    "description": "hex2rgba is a sample project to convert hexadecimal color codes to rgba",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Burak",
+            "email": "burak@myself.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "hex2rgba\\": "src/hex2rgba/"
+        }
+    }
+}
