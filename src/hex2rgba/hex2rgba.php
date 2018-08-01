@@ -8,7 +8,7 @@ class hex2rgba
     /**
      * @var string $default
      */
-    public $default = 'rgb(0,0,0)';
+    public $default = 'rgba(0,0,0,1.0)';
 
     /**
      * @var string $hex
@@ -18,7 +18,7 @@ class hex2rgba
     /**
      * @var array $convert
      */
-    public $convert  = [];
+    public $convert  = array();
 
     /**
      * @param $code
@@ -35,6 +35,20 @@ class hex2rgba
 
         // Just for using the function stand-alone, not necessary in this project
         return $this->hex;
+    }
+
+    /**
+     * Number format
+     *
+     * @param  int $opacity
+     * @return float
+     */
+    public function number_format($opacity)
+    {
+        if(abs($opacity) > 1 || !is_numeric($opacity))
+            $opacity = 1.0;
+
+        return number_format((float) $opacity, 1, '.', '');
     }
 
     /**
@@ -73,19 +87,9 @@ class hex2rgba
 
         $this->normalize();
 
-        //Convert hexadec to rgb
-        $rgb = array_map('hexdec', $this->convert);
-
-        //Check if opacity is set(rgba or rgb)
-        if(is_int($opacity))
-        {
-            if(abs($opacity) > 1)
-                $opacity = 1.0;
-
-            $output = 'rgba('.implode(',', $rgb).','.$opacity.')';
-        } else {
-            $output = 'rgba('.implode(',', $rgb).','.$opacity.')';
-        }
+        $rgb     = array_map('hexdec', $this->convert);
+        $opacity = $this->number_format($opacity);
+        $output  = 'rgba('.implode(',', $rgb).','.$opacity.')';
 
         return $output;
     }
